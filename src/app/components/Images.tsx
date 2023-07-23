@@ -121,7 +121,7 @@ const Images = ({ image }: Props) => {
   }, []);
 
   return (
-    <div className="bg-black p-3 rounded aspect-h-1 aspect-w-1 w-full">
+    <div className="bg-gray-900 border border-gray-900 p-3 rounded aspect-h-1 aspect-w-1 w-full">
       <h2 className="text-md text-white pb-2">{name}</h2>
 
       <Image

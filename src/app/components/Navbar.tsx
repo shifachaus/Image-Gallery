@@ -24,11 +24,11 @@ const Navbar = () => {
   // const [users, loading, error] = useCollection(query(collection(db, "users")));
 
   return (
-    <div className="fixed top-0 inset-x-0 h-fit bg-zinc-100 border-b border-zinc-300 z-[10] py-2">
+    <div className="fixed top-0 inset-x-0 h-fit bg-gray-900 border-b border-gray-900 z-[10] py-2">
       <div className="container max-w-7xl mx-auto flex items-start justify-between gap-02">
         {/* logo */}
         <Link href="/" className="flex gap-2 item-center">
-          <p className="text-zinc-700 txt-sm font-medium ">Gallery</p>
+          <p className="text-white txt-sm font-medium ">Gallery</p>
         </Link>
 
         <div className="flex items-center gap-4">
@@ -37,7 +37,6 @@ const Navbar = () => {
           <p className="text-sm font-medium">
             Welcome back, {user?.displayName}
           </p>
-          {/* Search */}
 
           <button
             className="bg-black px-2 py-1  text-white rounded cursor-pointer"
