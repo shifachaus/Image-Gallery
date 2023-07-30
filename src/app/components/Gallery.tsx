@@ -10,8 +10,10 @@ interface Image {
 
 const Gallery = () => {
   const [images, setImages] = useState<Image[]>([]);
+  const [filteredImages, setFilteredImages] = useState<Image[]>([]);
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(true);
+  const [input, setInput] = useState("");
 
   const fetchImages = async () => {
     try {
@@ -26,6 +28,7 @@ const Gallery = () => {
       const data = await response.json();
       // console.log(data);
       setImages((prev) => [...prev, ...data]);
+      setFilteredImages((prev) => [...prev, ...data]);
       setLoading(false);
     } catch (error) {
       setLoading(false);
@@ -37,12 +40,7 @@ const Gallery = () => {
   }, [page]);
 
   useEffect(() => {
-    console.log(
-      document.documentElement.scrollHeight,
-      window.innerHeight,
-      document.documentElement.scrollTop
-    );
-    const handleInfiniteScroll = async () => {
+    async function handleInfiniteScroll() {
       try {
         if (
           window.innerHeight + document.documentElement.scrollTop + 1 >=
@@ -51,27 +49,38 @@ const Gallery = () => {
           setLoading(true);
           setPage((prev) => prev + 1);
         }
-      } catch (err) {}
-    };
+      } catch (err) {
+        console.log(err);
+      }
+    }
 
     window.addEventListener("scroll", handleInfiniteScroll);
 
     return () => window.removeEventListener("scroll", handleInfiniteScroll);
-  }, []);
+  }, [filteredImages]);
 
-  console.log(loading);
+  const onSearch = () => {
+    const filteredList = images?.filter((img: any) =>
+      img?.user?.name.toLowerCase().includes(input.toLowerCase())
+    );
+    setFilteredImages(filteredList);
+  };
 
   return (
     <div className="container max-w-7xl mx-auto flex flex-col gap-4">
       <div>
         <input
           type="text"
-          placeholder="Search"
-          className="bg-gray-900 border border-gray-900 "
+          placeholder="Search..."
+          className="bg-gray-900 border border-slate-300 rounded"
+          onChange={(e) => {
+            setInput(e.target.value), onSearch();
+          }}
+          value={input}
         />
       </div>
       <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 md:grid-cols-3  justify-center ">
-        {images?.map((image, index) => {
+        {filteredImages?.map((image, index) => {
           const { id } = image;
 
           return <Images key={id} image={image} />;
@@ -87,9 +96,3 @@ const Gallery = () => {
 };
 
 export default Gallery;
-
-// https://api.unsplash.com/search/collections?page=1&query=office&client_id=aavFyT0HePdkj1HFFMoHLmyJH_0sF1uyvljOArspHfw&count=20
-
-//https://api.unsplash.com/photos/?client_id=aavFyT0HePdkj1HFFMoHLmyJH_0sF1uyvljOArspHfw&count=20
-
-//https://api.unsplash.com/photos/random?client_id=${process.env.NEXT_PUBLIC_UNPLASH_API_KEY}&count=20
