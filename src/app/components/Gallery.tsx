@@ -26,9 +26,21 @@ const Gallery = () => {
       }
 
       const data = await response.json();
-      // console.log(data);
-      setImages((prev) => [...prev, ...data]);
-      setFilteredImages((prev) => [...prev, ...data]);
+      console.log();
+      setImages((oldImages) => {
+        if (page === 1) {
+          return data;
+        } else {
+          return [...oldImages, ...data];
+        }
+      });
+      setFilteredImages((oldImages) => {
+        if (page === 1) {
+          return data;
+        } else {
+          return [...oldImages, ...data];
+        }
+      });
       setLoading(false);
     } catch (error) {
       setLoading(false);
@@ -79,7 +91,7 @@ const Gallery = () => {
           value={input}
         />
       </div>
-      <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 md:grid-cols-3  justify-center ">
+      <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-3  justify-center ">
         {filteredImages?.map((image, index) => {
           const { id } = image;
 
