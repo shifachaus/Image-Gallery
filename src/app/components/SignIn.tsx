@@ -24,8 +24,6 @@ const SignIn = () => {
         password
       );
 
-      // console.log(userCredential, "User");
-
       await signIn("credentials", {
         email,
         password,
@@ -38,16 +36,18 @@ const SignIn = () => {
   };
 
   return (
-    <div className="container mx-auto flex w-full flex flex-col justify-center space-y-6 sm-w-[400px]">
-      <div className="flex flex-col space-y-2 text-center"></div>
-
-      <h1 className="text-2xl font-semibold tracking-tight"> Welcome Back!</h1>
-      <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+    <div className="container mx-auto flex w-full flex-col justify-center space-y-6 sm-w-[400px]">
+      <div className="sm:mx-auto sm:w-full sm:max-w-sm mt-20">
+        <h3 className="mt-10 text-center text-2xl md:text-3xl font-bold leading-9 tracking-normal text-neutral-100">
+          Welcome Back!
+        </h3>
+      </div>
+      <div className="mt-20 sm:mx-auto sm:w-full sm:max-w-sm  rounded-md bg-zinc-950 shadow-md px-10 py-8">
         <form className="space-y-6" onSubmit={loginUser}>
           <div>
             <label
               htmlFor="email"
-              className="block text-sm font-medium leading-6 text-gray-900"
+              className="block text-sm font-medium leading-6 text-neutral-100"
             >
               Email address
             </label>
@@ -57,6 +57,7 @@ const SignIn = () => {
                 name="email"
                 type="email"
                 autoComplete="email"
+                placeholder="Email"
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
@@ -66,25 +67,20 @@ const SignIn = () => {
           </div>
 
           <div>
-            <div className="flex items-center justify-between">
-              <label
-                htmlFor="password"
-                className="block text-sm font-medium leading-6 text-gray-900"
-              >
-                Password
-              </label>
-              <div className="text-sm">
-                <div className="font-semibold text-indigo-600 hover:text-indigo-500">
-                  Forgot password?
-                </div>
-              </div>
-            </div>
+            <label
+              htmlFor="password"
+              className="block text-sm font-medium leading-6 text-neutral-100"
+            >
+              Password
+            </label>
+
             <div className="mt-2">
               <input
                 id="password"
                 name="password"
                 type="password"
                 autoComplete="current-password"
+                placeholder="*********************"
                 required
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
@@ -104,12 +100,9 @@ const SignIn = () => {
           </div>
         </form>
 
-        <p className="mt-10 text-center text-sm text-gray-500">
-          New here,
-          <Link
-            href="/sign-up"
-            className="hover:text-zinc-800 text-sm underline "
-          >
+        <p className="mt-10 text-center text-sm text-neutral-300">
+          New here,{" "}
+          <Link href="/sign-up" className="text-sm underline ">
             Sign Up
           </Link>
         </p>

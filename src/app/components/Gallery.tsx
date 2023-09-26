@@ -1,7 +1,9 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, ChangeEvent } from "react";
 
 import Images from "./Images";
+import Hero from "./Hero";
+import FilterButtons from "./FilterButtons";
 
 interface Image {
   id: string;
@@ -71,7 +73,8 @@ const Gallery = () => {
     return () => window.removeEventListener("scroll", handleInfiniteScroll);
   }, [filteredImages]);
 
-  const onSearch = () => {
+  const onSearch = (e: ChangeEvent<HTMLInputElement>) => {
+    setInput(e.target.value);
     const filteredList = images?.filter((img: any) =>
       img?.user?.name.toLowerCase().includes(input.toLowerCase())
     );
@@ -79,31 +82,24 @@ const Gallery = () => {
   };
 
   return (
-    <div className="container max-w-7xl mx-auto flex flex-col gap-4">
-      <div>
-        <input
-          type="text"
-          placeholder="Search..."
-          className="bg-gray-900 border border-slate-300 rounded"
-          onChange={(e) => {
-            setInput(e.target.value), onSearch();
-          }}
-          value={input}
-        />
-      </div>
-      <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-3  justify-center ">
-        {filteredImages?.map((image, index) => {
-          const { id } = image;
+    <section>
+      <Hero onSearch={onSearch} input={input} />
+      <main className=" max-w-7xl mx-auto flex flex-col gap-4 ">
+        <FilterButtons />
+        <div className="grid grid-cols-2 gap-4 lg:grid-cols-3 mt-10 p-4">
+          {filteredImages?.map((image, index) => {
+            const { id } = image;
 
-          return <Images key={id} image={image} />;
-        })}
-      </div>
-      {loading && (
-        <div className="bg-gray-900 border border-gray-900 p-2 mt-4 ">
-          <h1 className="text-center font-medium">Loading...</h1>
+            return <Images key={id} image={image} />;
+          })}
         </div>
-      )}
-    </div>
+        {loading && (
+          <div className="rounded shadow-sm w-1/2 mx-auto bg-neutral-200 border border-neutral-200 p-2 my-5 ">
+            <h1 className="text-center font-medium">Loading...</h1>
+          </div>
+        )}
+      </main>
+    </section>
   );
 };
 

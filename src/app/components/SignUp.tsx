@@ -34,19 +34,19 @@ const SignIn = () => {
   };
 
   return (
-    <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
-      <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-        <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
-          Sign in to your account
-        </h2>
+    <div className=" container mx-auto  w-full space-y-6   mt-20">
+      <div className="sm:mx-auto sm:w-full sm:max-w-sm ">
+        <h3 className="mt-10 text-center text-2xl md:text-3xl font-bold leading-9 tracking-normal text-neutral-100">
+          Create your account
+        </h3>
       </div>
 
-      <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+      <div className="mt-20 sm:mx-auto sm:w-full sm:max-w-sm  rounded-md bg-zinc-950 shadow-md px-10 py-8">
         <form className="space-y-6" onSubmit={registerUser}>
           <div>
             <label
               htmlFor="name"
-              className="block text-sm font-medium leading-6 text-gray-900"
+              className="block text-sm font-medium leading-6 text-neutral-100"
             >
               Name
             </label>
@@ -54,7 +54,9 @@ const SignIn = () => {
               <input
                 id="name"
                 name="name"
-                type="name"
+                type="text"
+                autoComplete="name"
+                placeholder="Name"
                 required
                 value={name}
                 onChange={(e) => setName(e.target.value)}
@@ -66,7 +68,7 @@ const SignIn = () => {
           <div>
             <label
               htmlFor="email"
-              className="block text-sm font-medium leading-6 text-gray-900"
+              className="block text-sm font-medium leading-6 text-neutral-100"
             >
               Email address
             </label>
@@ -76,6 +78,7 @@ const SignIn = () => {
                 name="email"
                 type="email"
                 autoComplete="email"
+                placeholder="Email"
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
@@ -85,28 +88,19 @@ const SignIn = () => {
           </div>
 
           <div>
-            <div className="flex items-center justify-between">
-              <label
-                htmlFor="password"
-                className="block text-sm font-medium leading-6 text-gray-900"
-              >
-                Password
-              </label>
-              <div className="text-sm">
-                <a
-                  href="#"
-                  className="font-semibold text-indigo-600 hover:text-indigo-500"
-                >
-                  Forgot password?
-                </a>
-              </div>
-            </div>
+            <label
+              htmlFor="password"
+              className="block text-sm font-medium leading-6 text-neutral-100"
+            >
+              Password
+            </label>
             <div className="mt-2">
               <input
                 id="password"
                 name="password"
                 type="password"
                 autoComplete="current-password"
+                placeholder="******************"
                 required
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
@@ -126,12 +120,9 @@ const SignIn = () => {
           </div>
         </form>
 
-        <p className="mt-10 text-center text-sm text-gray-500">
-          Already have an account?
-          <Link
-            href="/sign-in"
-            className="hover:text-zinc-800 text-sm underline "
-          >
+        <p className="mt-10 text-center text-sm text-neutral-300">
+          Already have an account?{" "}
+          <Link href="/sign-in" className="text-sm underline ">
             Sign In
           </Link>
         </p>

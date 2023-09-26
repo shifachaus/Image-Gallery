@@ -32,17 +32,15 @@ interface Like {
 
 type Props = {
   image: ImageData;
-  // liked: boolean;
-  // setLiked: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 const Images = ({ image }: Props) => {
   const [user] = useAuthState(auth);
 
-  // console.log(user?.uid);
-
+  const [show, setShow] = useState(false);
   const [liked, setLiked] = useState(false);
   const [likes, setLikes] = useState<Like[] | null>(null);
+
   const {
     id,
     urls: { small, regular },
@@ -121,26 +119,38 @@ const Images = ({ image }: Props) => {
   }, []);
 
   return (
-    <div className="bg-gray-900 border border-gray-900 p-3 rounded aspect-h-1 aspect-w-1 w-full">
-      <h2 className="text-md text-white pb-2">{name}</h2>
-
+    <div className="relative bg-neutral-200 rounded-md">
       <Image
         src={regular}
         alt="Image"
-        className="w-full object-cover object-center group-hover:opacity-75 h-72 cursor-pointer"
-        width={350}
-        height={0}
+        className="w-full object-cover object-center group-hover:opacity-75 h-72 cursor-pointer transition-all duration-300 ease-linear rounded-md"
+        width={200}
+        height={200}
         onDoubleClick={!hasUserLiked ? addLike : removeLike}
+        onMouseOver={() => setShow(true)}
+        onMouseLeave={() => setShow(false)}
       />
-      <p className="pt-2">
-        {hasUserLiked ? (
-          <FcLike className="text-2xl " />
-        ) : (
-          <GoHeart className="text-2xl stroke-current text-white " />
-        )}
-      </p>
 
-      <p className="pt-2 text-white ">{likes?.length} likes</p>
+      <div
+        className={` ${
+          show ? "block" : "hidden"
+        } p-2 rounded-md absolute top-3 right-3 bg-white `}
+      >
+        {hasUserLiked ? (
+          <FcLike className="text-lg" />
+        ) : (
+          <GoHeart className="font-bold  text-lg stroke-current text-black " />
+        )}
+      </div>
+      <h2
+        className={` ${
+          show ? "block" : "hidden"
+        } text-sm font-semibold text-white pb-2 absolute bottom-3  left-3`}
+      >
+        {name}
+      </h2>
+
+      {/* <p className="pt-2 text-white ">{likes?.length} likes</p> */}
     </div>
   );
 };

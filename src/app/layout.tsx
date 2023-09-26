@@ -24,7 +24,7 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <div className="min-h-screen pt-12 bg-slate-50, antialiased">
+        <div className="antialiased">
           <SessionProvider session={session}>{children}</SessionProvider>
         </div>
       </body>
