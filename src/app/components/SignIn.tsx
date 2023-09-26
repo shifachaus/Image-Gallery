@@ -38,16 +38,16 @@ const SignIn = () => {
   return (
     <div className="container mx-auto flex w-full flex-col justify-center space-y-6 sm-w-[400px]">
       <div className="sm:mx-auto sm:w-full sm:max-w-sm mt-20">
-        <h3 className="mt-10 text-center text-2xl md:text-3xl font-bold leading-9 tracking-normal text-neutral-100">
+        <h3 className="mt-10 text-center text-2xl md:text-3xl font-bold leading-9 tracking-normal text-gray-900">
           Welcome Back!
         </h3>
       </div>
-      <div className="mt-20 sm:mx-auto sm:w-full sm:max-w-sm  rounded-md bg-zinc-950 shadow-md px-10 py-8">
+      <div className="mt-20 sm:mx-auto sm:w-full sm:max-w-sm  rounded-md bg-neutral-100 shadow-md px-10 py-8">
         <form className="space-y-6" onSubmit={loginUser}>
           <div>
             <label
               htmlFor="email"
-              className="block text-sm font-medium leading-6 text-neutral-100"
+              className="block text-sm font-medium leading-6 text-gray-700"
             >
               Email address
             </label>
@@ -69,7 +69,7 @@ const SignIn = () => {
           <div>
             <label
               htmlFor="password"
-              className="block text-sm font-medium leading-6 text-neutral-100"
+              className="block text-sm font-medium leading-6 text-gray-700"
             >
               Password
             </label>
@@ -93,14 +93,14 @@ const SignIn = () => {
             <button
               disabled={!email || !password}
               type="submit"
-              className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              className="mt-8 flex w-full justify-center rounded-md bg-black px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-gray-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-600"
             >
               Sign In
             </button>
           </div>
         </form>
 
-        <p className="mt-10 text-center text-sm text-neutral-300">
+        <p className="mt-10 text-center text-sm text-gray-700">
           New here,{" "}
           <Link href="/sign-up" className="text-sm underline ">
             Sign Up
