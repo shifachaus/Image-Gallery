@@ -123,7 +123,7 @@ const Images = ({ image }: Props) => {
       <Image
         src={regular}
         alt="Image"
-        className="w-full object-cover object-center group-hover:opacity-75 h-72 cursor-pointer transition-all duration-300 ease-linear rounded-md"
+        className="w-full object-cover object-center group-hover:opacity-75 sm:h-72 h-40 cursor-pointer transition-all duration-300 ease-linear rounded-md"
         width={200}
         height={200}
         onDoubleClick={!hasUserLiked ? addLike : removeLike}
@@ -149,8 +149,6 @@ const Images = ({ image }: Props) => {
       >
         {name}
       </h2>
-
-      {/* <p className="pt-2 text-white ">{likes?.length} likes</p> */}
     </div>
   );
 };

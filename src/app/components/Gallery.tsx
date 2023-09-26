@@ -28,7 +28,7 @@ const Gallery = () => {
       }
 
       const data = await response.json();
-      console.log();
+
       setImages((oldImages) => {
         if (page === 1) {
           return data;
@@ -49,6 +49,7 @@ const Gallery = () => {
       console.error("Error fetching images:", error);
     }
   };
+
   useEffect(() => {
     fetchImages();
   }, [page]);
@@ -73,19 +74,54 @@ const Gallery = () => {
     return () => window.removeEventListener("scroll", handleInfiniteScroll);
   }, [filteredImages]);
 
-  const onSearch = (e: ChangeEvent<HTMLInputElement>) => {
+  const onSearch = async (e: ChangeEvent<HTMLInputElement>) => {
     setInput(e.target.value);
-    const filteredList = images?.filter((img: any) =>
-      img?.user?.name.toLowerCase().includes(input.toLowerCase())
-    );
-    setFilteredImages(filteredList);
+    if (input === "") return;
+    try {
+      const response = await fetch(
+        `https://api.unsplash.com/search/photos?client_id=${process.env.NEXT_PUBLIC_UNPLASH_API_KEY}&query=${input}`
+      );
+
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+
+      const data = await response.json();
+      setFilteredImages(data.results);
+
+      setLoading(false);
+    } catch (error) {
+      setLoading(false);
+      console.error("Error fetching images:", error);
+    }
+  };
+
+  const handleFilter = async (category: string) => {
+    try {
+      const response = await fetch(
+        `https://api.unsplash.com/search/photos?client_id=${process.env.NEXT_PUBLIC_UNPLASH_API_KEY}&query=${category}`
+      );
+
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+
+      const data = await response.json();
+      // console.log(data.results, "HEE");
+      setFilteredImages(data.results);
+
+      setLoading(false);
+    } catch (error) {
+      setLoading(false);
+      console.error("Error fetching images:", error);
+    }
   };
 
   return (
     <section>
       <Hero onSearch={onSearch} input={input} />
       <main className=" max-w-7xl mx-auto flex flex-col gap-4 ">
-        <FilterButtons />
+        <FilterButtons handleFilter={handleFilter} fetchImages={fetchImages} />
         <div className="grid grid-cols-2 gap-4 lg:grid-cols-3 mt-10 p-4">
           {filteredImages?.map((image, index) => {
             const { id } = image;
