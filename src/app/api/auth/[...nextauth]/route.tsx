@@ -1,27 +1,10 @@
 import NextAuth, { AuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import {
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  updateProfile,
-} from "firebase/auth";
+import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "@/app/firebaseConfig";
 import { FirestoreAdapter } from "@auth/firebase-adapter";
 import { cert } from "firebase-admin/app";
-import { getFirestore, collection, addDoc } from "firebase/firestore";
 import { Adapter } from "next-auth/adapters";
-
-// const firestore = getFirestore();
-
-// const storeUserData = async (user: any) => {
-//   const userCollectionRef = collection(firestore, "users");
-
-//   // Convert the user object to a plain JavaScript object using JSON serialization
-//   const userData = JSON.parse(JSON.stringify(user));
-//   console.log(userCollectionRef, userData);
-
-//   await addDoc(userCollectionRef, userData);
-// };
 
 export const authOptions: AuthOptions = {
   // Configure one or more authentication providers

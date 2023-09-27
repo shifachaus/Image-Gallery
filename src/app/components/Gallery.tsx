@@ -4,6 +4,7 @@ import React, { useState, useEffect, ChangeEvent } from "react";
 import Images from "./Images";
 import Hero from "./Hero";
 import FilterButtons from "./FilterButtons";
+import Loading from "./Loading";
 
 interface Image {
   id: string;
@@ -122,16 +123,14 @@ const Gallery = () => {
       <Hero onSearch={onSearch} input={input} />
       <main className=" max-w-7xl mx-auto flex flex-col gap-4 ">
         <FilterButtons handleFilter={handleFilter} fetchImages={fetchImages} />
-        <div className="grid grid-cols-2 gap-4 lg:grid-cols-3 mt-10 p-4">
-          {filteredImages?.map((image, index) => {
-            const { id } = image;
 
-            return <Images key={id} image={image} />;
-          })}
-        </div>
-        {loading && (
-          <div className="rounded shadow-sm w-1/2 mx-auto bg-neutral-200 border border-neutral-200 p-2 my-5 ">
-            <h1 className="text-center font-medium">Loading...</h1>
+        {filteredImages.length === 0 ? (
+          <Loading />
+        ) : (
+          <div className="grid grid-cols-2 gap-4 lg:grid-cols-3 mt-10 p-4">
+            {filteredImages?.map((image, index) => {
+              return <Images key={index} image={image} />;
+            })}
           </div>
         )}
       </main>

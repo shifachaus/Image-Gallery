@@ -1,17 +1,16 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import Navbar from "./components/Navbar";
-import { auth, db } from "./firebaseConfig";
-import { useAuthState } from "react-firebase-hooks/auth";
+import { useEffect } from "react";
+import { auth } from "./firebaseConfig";
 import { useRouter } from "next/navigation";
-import { useSession } from "next-auth/react";
 import Gallery from "./components/Gallery";
 import { onAuthStateChanged } from "firebase/auth";
+import { useAuthState } from "react-firebase-hooks/auth";
+import Loading from "./components/Loading";
 
 export default function Home() {
   const router = useRouter();
-  const session = useSession();
+  const [user] = useAuthState(auth);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -25,9 +24,5 @@ export default function Home() {
     return () => unsubscribe();
   }, []);
 
-  return (
-    <div>
-      <Gallery />
-    </div>
-  );
+  return <div>{user === null ? <Loading /> : <Gallery />}</div>;
 }

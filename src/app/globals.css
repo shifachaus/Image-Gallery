@@ -11,3 +11,18 @@ body {
   color: rgb(var(--foreground-rgb));
   background-color: rgb(var(--background));
 }
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-bounce-custom {
+  animation: bounce 1s infinite;
+  animation-timing-function: ease-in-out; /* Optional: Smooth acceleration and deceleration */
+}

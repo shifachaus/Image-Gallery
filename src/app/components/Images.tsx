@@ -126,6 +126,9 @@ const Images = ({ image }: Props) => {
         className="w-full object-cover object-center group-hover:opacity-75 sm:h-72 h-40 cursor-pointer transition-all duration-300 ease-linear rounded-md"
         width={200}
         height={200}
+        quality={100}
+        blurDataURL={regular}
+        placeholder="blur"
         onDoubleClick={!hasUserLiked ? addLike : removeLike}
         onMouseOver={() => setShow(true)}
         onMouseLeave={() => setShow(false)}
