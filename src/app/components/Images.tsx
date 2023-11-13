@@ -20,7 +20,7 @@ type ImageData = {
     small: string;
     regular: string;
   };
-  user: {
+  user?: {
     name: string;
   };
 };
@@ -44,7 +44,7 @@ const Images = ({ image }: Props) => {
   const {
     id,
     urls: { small, regular },
-    user: { name },
+    user: imageUser,
   } = image;
 
   const likeRef = collection(db, "likes");
@@ -68,7 +68,7 @@ const Images = ({ image }: Props) => {
         userId: user?.uid,
         postId: id,
         regular,
-        name,
+        name: imageUser?.name,
         liked: true,
       });
 
@@ -152,7 +152,7 @@ const Images = ({ image }: Props) => {
           show ? "block" : "hidden"
         } text-sm font-semibold text-white pb-2 absolute bottom-3  left-3`}
       >
-        {name}
+        {imageUser?.name}
       </h2>
     </div>
   );

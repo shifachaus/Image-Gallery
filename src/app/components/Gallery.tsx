@@ -8,12 +8,19 @@ import Loading from "./Loading";
 
 interface Image {
   id: string;
-  urls: string;
+  urls: {
+    small: string;
+    regular: string;
+  };
+  user?: {
+    name: string;
+  };
 }
 
 const Gallery = () => {
   const [images, setImages] = useState<Image[]>([]);
   const [filteredImages, setFilteredImages] = useState<Image[]>([]);
+
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(true);
   const [input, setInput] = useState("");
