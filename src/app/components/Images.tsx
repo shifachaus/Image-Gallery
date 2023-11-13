@@ -119,7 +119,10 @@ const Images = ({ image }: Props) => {
   }, []);
 
   return (
-    <div className="relative bg-neutral-200 rounded-md">
+    <div
+      className="relative bg-neutral-200 rounded-md"
+      onMouseLeave={() => setShow(false)}
+    >
       <Image
         src={regular}
         alt="Image"
@@ -131,7 +134,6 @@ const Images = ({ image }: Props) => {
         placeholder="blur"
         onDoubleClick={!hasUserLiked ? addLike : removeLike}
         onMouseOver={() => setShow(true)}
-        onMouseLeave={() => setShow(false)}
       />
 
       <div

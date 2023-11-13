@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect, ChangeEvent } from "react";
-import heroImage from "../../../public/heroImage.jpg";
+import heroImage from "../../../public/heroImg.jpg";
 import Image from "next/image";
 import Navbar from "./Navbar";
 
@@ -26,7 +26,7 @@ const Hero: React.FC<SearchProps> = ({ onSearch, input }) => {
         <input
           type="text"
           placeholder="Search for free photos"
-          className="sm:w-[500px] md:w-[600px] border border-white focus:ring-0 focus:border-gray-500 font-semibold text-gray-500 placeholder-gray-500 text-lg "
+          className="w-44 md:w-[600px] border-0 focus:ring-0 focus:border-gray-500 font-semibold text-neutral-600 placeholder-neutral-600 text-sm md:text-base "
           onChange={onSearch}
           value={input}
         />

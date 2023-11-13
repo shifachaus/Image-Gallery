@@ -42,15 +42,15 @@ const Navbar = () => {
     <main
       className={`absolute top-0 inset-x-0 h-fit  z-[10] py-4 transition-all duration-300`}
     >
-      <nav className=" container max-w-7xl mx-auto flex items-start justify-between gap-02">
+      <nav className=" container max-w-7xl mx-auto flex items-start justify-between ">
         <Link href="/" className="flex gap-2 item-center">
-          <p className="text-stone-900 font-semibold text-lg tracking-wide ">
-            Gallery
+          <p className="text-neutral-100 font-black text-xl md:text-2xl  tracking-wide ">
+            Gallery<span className="text-black">Gaze</span>
           </p>
         </Link>
 
-        <div className="flex items-center gap-4 ">
-          <p className={`text-sm font-semibold -tracking-tighter text-white`}>
+        <div className="flex items-center gap-1 ">
+          <p className={`text-sm  -tracking-tighter text-neutral-200`}>
             Hello, {user?.displayName}
           </p>
 
@@ -60,7 +60,7 @@ const Navbar = () => {
           >
             <span>
               <svg
-                className={`w-5 h-5 text-white`}
+                className={`w-5 h-5 text-neutral-200`}
                 aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"

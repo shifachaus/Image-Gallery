@@ -56,8 +56,8 @@ const SignIn = () => {
           placeholder="blur"
         />
       </div>
-      <main className="mx-auto  md:col-span-7 container">
-        <h3 className="mt-20 text-2xl md:text-3xl font-bold leading-9 tracking-normal text-gray-800">
+      <main className="mx-auto  md:col-span-7 container w-[90%]">
+        <h3 className="mt-20 text-2xl md:text-3xl font-bold leading-9 tracking-normal text-neutral-800">
           Welcome Back!
         </h3>
 
@@ -80,7 +80,7 @@ const SignIn = () => {
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="block bg-transparent w-full rounded-md border-0 py-1.5 text-neutral-400 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-neutral-400 focus:ring-1 focus:ring-inset focus:ring-gray-400 sm:text-sm sm:leading-6"
+                  className="block bg-transparent w-full rounded-md border-0 py-1.5 text-neutral-700 shadow-sm ring-1 ring-inset ring-gray-400 placeholder:text-neutral-500 focus:ring-1 focus:ring-inset focus:ring-gray-400 sm:text-sm sm:leading-6"
                 />
               </div>
             </div>
@@ -103,7 +103,7 @@ const SignIn = () => {
                   required
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="block bg-transparent w-full rounded-md border-0 py-1.5 text-neutral-400 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-neutral-400 focus:ring-1 focus:ring-inset focus:ring-gray-400 sm:text-sm sm:leading-6"
+                  className="block bg-transparent w-full rounded-md border-0 py-1.5 text-neutral-700 shadow-sm ring-1 ring-inset ring-gray-400 placeholder:text-neutral-500 focus:ring-1 focus:ring-inset focus:ring-gray-400 sm:text-sm sm:leading-6"
                 />
               </div>
             </div>
@@ -119,7 +119,7 @@ const SignIn = () => {
             </div>
           </form>
 
-          <p className="mt-10 text-center text-sm text-neutral-400">
+          <p className="mt-10 text-center text-sm text-neutral-500">
             Don’t haven an account?{" "}
             <Link
               href="/sign-up"

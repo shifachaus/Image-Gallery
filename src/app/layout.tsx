@@ -11,8 +11,8 @@ import { authOptions } from "./api/auth/[...nextauth]/route";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Image Gallery",
-  description: "Infinite Scrolling",
+  title: "GalleryGaze",
+  description: "Infinite Imagery",
 };
 
 export default async function RootLayout({

@@ -1,5 +1,5 @@
 import { FC } from "react";
-import SignUp from "@/app/components/SignUp";
+import SignUp from "../components/SignUp";
 
 const page: FC = () => {
   return (
