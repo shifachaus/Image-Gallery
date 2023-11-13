@@ -15,7 +15,7 @@ import { auth, db } from "../firebaseConfig";
 import { useAuthState } from "react-firebase-hooks/auth";
 
 type ImageData = {
-  id: Number;
+  id: string;
   urls: {
     small: string;
     regular: string;
